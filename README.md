@@ -58,9 +58,9 @@ We use [GitHub](http://github.com/) for versioning. For the versions available, 
 
 ## Authors
 
-* **David Toler** - *UI/UX* - [David Toler](https://github.com/rounder1)
-* **Rodolfo Saez** - *UI/UX* - [Rodolfo Saez](https://github.com/rsaez)
-* **Shazia Jiwani** - *UI/UX* - [Shazia Jiwani](https://github.com/jshazia)
+* **David Toler** - *React/Routes* - [David Toler](https://github.com/rounder1)
+* **Rodolfo Saez** - *Auth/DB* - [Rodolfo Saez](https://github.com/rsaez)
+* **Shazia Jiwani** - *Vision API/UX* - [Shazia Jiwani](https://github.com/jshazia)
 
 See also the list of [contributors](https://github.com/rsaez/MutualMyth/settings/collaboration) who participated in this project.
 
