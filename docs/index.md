@@ -23,3 +23,9 @@ Presentation Time
 5. A screenshot of your JIRA, Trello, or Project Management Board that shows a breakdown of tasks - assigned to group members with a schedule.
 
 ![alt text](https://github.com/rsaez/fashionzen/blob/master/docs/Images/Dashboard.png)
+![alt text](https://github.com/rsaez/fashionzen/blob/master/docs/Images/Existing%20Module.png)
+![alt text](https://github.com/rsaez/fashionzen/blob/master/docs/Images/FrontPage.png)
+![alt text](https://github.com/rsaez/fashionzen/blob/master/docs/Images/Module%20creation.png)
+![alt text](https://github.com/rsaez/fashionzen/blob/master/docs/Images/Popup.png)
+![alt text](https://github.com/rsaez/fashionzen/blob/master/docs/Images/Project%20Info%20Written.jpg)
+![alt text](https://github.com/rsaez/fashionzen/blob/master/docs/Images/TrelloPlan.png)
