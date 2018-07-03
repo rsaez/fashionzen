@@ -22,4 +22,4 @@ Presentation Time
 
 5. A screenshot of your JIRA, Trello, or Project Management Board that shows a breakdown of tasks - assigned to group members with a schedule.
 
-
+![alt text](https://raw.githubusercontent.com/username/projectname/branch/path/to/img.png)
