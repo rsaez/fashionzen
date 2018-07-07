@@ -1,7 +1,7 @@
 const router = require("express").Router();
-const bookRoutes = require("./books");
+const closetRoutes = require("./closet");
 
-// Book routes
-router.use("/books", bookRoutes);
+// add the closet routes and add the "/closet" to the url
+router.use("/closet", closetRoutes);
 
 module.exports = router;
