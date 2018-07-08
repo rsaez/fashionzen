@@ -4,23 +4,13 @@ const db = require("../models");
 module.exports = {
 
   findAll: function(req, res) {
-    db.Closet.find( 
-      {} // TODO: use req.body instead? do I need body parser for that?
-    )
+    db.Closet.find(req.body)
     .then(x => res.json(x))
     .catch(err => res.status(422).json(err));
   },
 
   create: function(req, res) {
-    db.Closet.create(
-      {
-      user: "Jim",
-      articleName: "shirt",
-      clothingType: "top",
-      color: "red",
-      material: "silk"
-      }
-    )
+    db.Closet.create(req.body)
       .then(x => res.json(x))
       .catch(err => res.status(422).json(err));
   }
