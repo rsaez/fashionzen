@@ -4,34 +4,36 @@ import API from "../utils/API";
 class HelloReact extends Component {
 
     state = {
-        clothes: [],
-        tester: ""
+        clothes: []
     };
 
     componentDidMount() {
         this.loadClothes();
     };
 
-    // Loads all clothes and sets them to this.state.clothes
+    // Loads all documents from db and and sets them to this.state.clothes
     loadClothes = () => {
-        API.getCloset()
-        .then(res => {
-            // log the response so that you know it is working, delete befor production
-            console.log(res.data);
-            this.setState({ 
-                clothes: res.data, 
-                tester: res.data[0].color 
-            });
-        })
-        .catch(err => console.log(err));
+       API.getCloset()
+       .then(res => this.setState({clothes: res.data}, () => console.log("GET request worked:", this.state.clothes)))
+       .catch(err => console.log(err));
     };
 
     render() {
+        
         return(
             <div>
                 <h1>Hello World!</h1>
                 {/* TODO: turn this form (article display) into a component then run the map function on it*/}
-                <p>{this.state.tester}</p>
+                <ul>
+                {this.state.clothes.map(clothes => 
+                    <li key={clothes._id}>
+                        {clothes.user}
+                        {clothes.articleName}
+                        {clothes.clothingType}
+                        {clothes.color}
+                    </li>
+                )}
+                </ul>
                 {/*article display end*/}
             </div>
         )
