@@ -5,13 +5,21 @@ module.exports = {
 
   findAll: function(req, res) {
     db.Closet.find(req.body)
-    .then(x => res.json(x))
+    .then(dbModel => res.json(dbModel))
     .catch(err => res.status(422).json(err));
   },
 
   create: function(req, res) {
     db.Closet.create(req.body)
-      .then(x => res.json(x))
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+
+  remove: function(req, res) {
+    db.Closet
+      .findById({ _id: req.params.id })
+      .then(dbModel => dbModel.remove())
+      .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   }
 };
