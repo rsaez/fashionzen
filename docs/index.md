@@ -29,3 +29,5 @@ Presentation Time
 ![alt text](https://raw.githubusercontent.com/rsaez/fashionzen/master/docs/Images/Popup.png)
 ![alt text](https://raw.githubusercontent.com/rsaez/fashionzen/master/docs/Images/Project%20Info%20Written.jpg)
 ![alt text](https://raw.githubusercontent.com/rsaez/fashionzen/master/docs/Images/TrelloPlan.png)
+Progress for week 2:
+![alt text](https://raw.githubusercontent.com/rsaez/fashionzen/master/docs/Images/Progress2.png)
