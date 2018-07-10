@@ -6,7 +6,11 @@ export default {
         return axios.get("/api/closet");
     },
     // Saves clothes to the database
-    saveBook: function(clothesData) {
+    saveCloset: function(clothesData) {
         return axios.post("/api/closet", clothesData);
-    }
+    },
+    // Deletes the book with the given id
+    deleteCloset: function(id) {
+    return axios.delete("/api/closet/" + id);
+  },
 };
