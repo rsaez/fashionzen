@@ -4,7 +4,12 @@ import API from "../utils/API";
 class HelloReact extends Component {
 
     state = {
-        clothes: []
+        clothes: [],
+        user: "",
+        articleName: "", 
+        clothingType: "",
+        color: "",
+        material: ""
     };
 
     componentDidMount() {
@@ -18,6 +23,33 @@ class HelloReact extends Component {
        .catch(err => console.log(err));
     };
 
+    // Set this.state equal to what is typed in the textboxes
+    // need to look more into this (why does event need to be passed? what is the const technique called?)
+    handleChange = (event) => {
+        const { target: { name, value } } = event;
+        this.setState({
+          [name]: value
+        });
+    }; 
+    
+    // handle submition of user data then reloads data
+    handleSubmit = (event) => {
+        event.preventDefault();
+        if (this.state.user && this.state.articleName && this.state.clothingType && this.state.color && this.state.material) {
+          API.saveCloset({
+            user: this.state.user,
+            articleName: this.state.articleName,
+            clothingType: this.state.clothingType,
+            color: this.state.color,
+            material: this.state.material
+          })
+            .then(res => this.loadClothes())
+            .catch(err => console.log(err));
+        }
+    };
+    
+
+
     render() {
         
         return(
@@ -27,14 +59,25 @@ class HelloReact extends Component {
                 <ul>
                 {this.state.clothes.map(clothes => 
                     <li key={clothes._id}>
-                        {clothes.user}
-                        {clothes.articleName}
-                        {clothes.clothingType}
-                        {clothes.color}
+                        {clothes.user} {clothes.articleName} {clothes.clothingType} {clothes.color}
                     </li>
                 )}
                 </ul>
                 {/*article display end*/}
+
+                
+                {/*Form to add clothing item*/}
+                <form onSubmit={this.handleSubmit}>
+                    <label>Input Clothes</label>
+                    <input type="text" name="user" value={this.state.user} onChange={this.handleChange} placeholder="user"/>
+                    <input type="text" name="articleName" value={this.state.articleName} onChange={this.handleChange} placeholder="articleName"/>
+                    <input type="text" name="clothingType" value={this.state.clothingType} onChange={this.handleChange} placeholder="clothingType"/>
+                    <input type="text" name="color" value={this.state.color} onChange={this.handleChange} placeholder="color"/>
+                    <input type="text" name="material" value={this.state.material} onChange={this.handleChange} placeholder="material"/>
+                    <input type="submit" value="Submit"/>
+                </form>
+                {/*input form end*/}
+
             </div>
         )
     }

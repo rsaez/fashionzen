@@ -6,7 +6,7 @@ export default {
         return axios.get("/api/closet");
     },
     // Saves clothes to the database
-    saveBook: function(clothesData) {
+    saveCloset: function(clothesData) {
         return axios.post("/api/closet", clothesData);
     }
 };
