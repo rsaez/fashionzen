@@ -48,10 +48,15 @@ class HelloReact extends Component {
         }
     };
     
+    // Delete clothing from the database and reload page
+    deleteClothes = (id) => {
+        API.deleteCloset(id)
+            .then(res => this.loadClothes())
+            .catch(err => console.log(err));
+    };
 
 
     render() {
-        
         return(
             <div>
                 <h1>Hello World!</h1>
@@ -59,7 +64,8 @@ class HelloReact extends Component {
                 <ul>
                 {this.state.clothes.map(clothes => 
                     <li key={clothes._id}>
-                        {clothes.user} {clothes.articleName} {clothes.clothingType} {clothes.color}
+                        {clothes.user} {clothes.articleName} {clothes.clothingType} {clothes.color} 
+                        <span onClick={() => this.deleteClothes(clothes._id)}>DELETE</span>
                     </li>
                 )}
                 </ul>
