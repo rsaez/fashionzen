@@ -31,3 +31,6 @@ Presentation Time
 ![alt text](https://raw.githubusercontent.com/rsaez/fashionzen/master/docs/Images/TrelloPlan.png)
 Progress for week 2:
 ![alt text](https://raw.githubusercontent.com/rsaez/fashionzen/master/docs/Images/Progress2.PNG)
+Working on Heroku:
+![alt text](https://raw.githubusercontent.com/rsaez/fashionzen/master/docs/Images/deliverable2working.PNG)
+
