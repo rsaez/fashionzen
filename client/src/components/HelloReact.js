@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 import API from "../utils/API";
+// import Nav from "./Nav";
+// import Footer from "./Footer";
+// import LogInBtn from "./LogInBtn";
+import Card from "./Card";
 
 class HelloReact extends Component {
 
@@ -9,7 +13,8 @@ class HelloReact extends Component {
         articleName: "", 
         clothingType: "",
         color: "",
-        material: ""
+        material: "",
+        image: ""
     };
 
     componentDidMount() {
@@ -55,10 +60,24 @@ class HelloReact extends Component {
             .catch(err => console.log(err));
     };
 
+    readURL = (input) => {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                ('')
+                    .attr('src', e.target.result)
+                    .width(150)
+                    .height(200);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    };
+
 
     render() {
         return(
             <div>
+                <Card>
                 <h1>Hello World!</h1>
                 {/* TODO: turn this form (article display) into a component then run the map function on it*/}
                 <ul>
@@ -80,9 +99,13 @@ class HelloReact extends Component {
                     <input type="text" name="clothingType" value={this.state.clothingType} onChange={this.handleChange} placeholder="clothingType"/>
                     <input type="text" name="color" value={this.state.color} onChange={this.handleChange} placeholder="color"/>
                     <input type="text" name="material" value={this.state.material} onChange={this.handleChange} placeholder="material"/>
+                    <input type='file' onChange={this.readURL} placeholder="img.jpeg"/>
+                    <img name="image"  src={this.state.image} alt="your image" /><br/><br/>
                     <input type="submit" value="Submit"/>
                 </form>
                 {/*input form end*/}
+                </Card>
+
 
             </div>
         )
