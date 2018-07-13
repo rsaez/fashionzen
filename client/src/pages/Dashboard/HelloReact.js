@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import API from "../utils/API";
-// import Nav from "./Nav";
-// import Footer from "./Footer";
-// import LogInBtn from "./LogInBtn";
-import Card from "./Card";
+import API from "../../utils/API";
+import Nav from "../../components/Nav";
+import LogOutBtn from "../../components/LogOutBtn";
+import Card from "../../components/Card/index";
 
 class HelloReact extends Component {
 
@@ -77,6 +76,9 @@ class HelloReact extends Component {
     render() {
         return(
             <div>
+                 <Nav>
+                </Nav>
+                <LogOutBtn></LogOutBtn>
                 <Card>
                 <h1>Hello World!</h1>
                 {/* TODO: turn this form (article display) into a component then run the map function on it*/}
