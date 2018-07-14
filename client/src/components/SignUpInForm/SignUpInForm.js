@@ -93,7 +93,7 @@ class Home extends Component {
     });
 
     // Post request to backend
-    fetch('/api/account/signup', {
+    fetch('/api/signup/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -133,7 +133,7 @@ class Home extends Component {
     });
 
     // Post request to backend
-    fetch('/api/account/signin', {
+    fetch('/api/signin', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
