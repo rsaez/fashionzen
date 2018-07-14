@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 import API from "../../utils/API";
 import Nav from "../../components/Nav";
 import LogOutBtn from "../../components/LogOutBtn";
@@ -13,7 +14,7 @@ class HelloReact extends Component {
         clothingType: "",
         color: "",
         material: "",
-        image: ""
+        image: null
     };
 
     componentDidMount() {
@@ -39,13 +40,14 @@ class HelloReact extends Component {
     // handle submition of user data then reloads data
     handleSubmit = (event) => {
         event.preventDefault();
-        if (this.state.user && this.state.articleName && this.state.clothingType && this.state.color && this.state.material) {
+        if (this.state.user && this.state.articleName && this.state.clothingType && this.state.color && this.state.material && this.state.image) {
           API.saveCloset({
             user: this.state.user,
             articleName: this.state.articleName,
             clothingType: this.state.clothingType,
             color: this.state.color,
-            material: this.state.material
+            material: this.state.material,
+            image: this.state.image
           })
             .then(res => this.loadClothes())
             .catch(err => console.log(err));
@@ -59,9 +61,18 @@ class HelloReact extends Component {
             .catch(err => console.log(err));
     };
 
+    fileChangedHandler = (event) => {
+        this.setState({image: event.target.files[0]})
+    };
+
+    uploadHandler = () => {
+       axios.post("/api/upload", this.state.image);
+    };
+
+
     readURL = (input) => {
         if (input.files && input.files[0]) {
-            var reader = new FileReader();
+            let reader = new FileReader();
             reader.onload = function (e) {
                 ('')
                     .attr('src', e.target.result)
@@ -101,9 +112,9 @@ class HelloReact extends Component {
                     <input type="text" name="clothingType" value={this.state.clothingType} onChange={this.handleChange} placeholder="clothingType"/>
                     <input type="text" name="color" value={this.state.color} onChange={this.handleChange} placeholder="color"/>
                     <input type="text" name="material" value={this.state.material} onChange={this.handleChange} placeholder="material"/>
-                    <input type='file' onChange={this.readURL} placeholder="img.jpeg"/>
-                    <img name="image"  src={this.state.image} alt="your image" /><br/><br/>
-                    <input type="submit" value="Submit"/>
+                    <input type='file' onChange={this.fileChangedHandler} placeholder="image" />
+                    <img name="image"  src={this.state.image} alt="your image" />
+                    <input type="submit" onClick={this.uploadHandler} value="Submit" />
                 </form>
                 {/*input form end*/}
                 </Card>

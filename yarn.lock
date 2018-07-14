@@ -707,6 +707,10 @@ finalhandler@1.1.1:
     statuses "~1.4.0"
     unpipe "~1.0.0"
 
+flushwritable@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/flushwritable/-/flushwritable-1.0.0.tgz#3e328d8fde412ad47e738e3be750b4d290043498"
+
 follow-redirects@^1.2.3:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.5.1.tgz#67a8f14f5a1f67f962c2c46469c79eaec0a90291"
@@ -834,6 +838,12 @@ got@^6.7.1:
 graceful-fs@^4.1.11, graceful-fs@^4.1.2:
   version "4.1.11"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.1.11.tgz#0e8bdfe4d1ddb8854d64e04ea7c00e2a026e5658"
+
+gridfs-stream@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/gridfs-stream/-/gridfs-stream-1.1.1.tgz#3dd3a100ec2021a181282f6eb46709636074df89"
+  dependencies:
+    flushwritable "^1.0.0"
 
 har-schema@^2.0.0:
   version "2.0.0"
