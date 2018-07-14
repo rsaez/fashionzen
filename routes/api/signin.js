@@ -3,6 +3,6 @@ const userSessionController = require("../../controllers/userSessionController")
 
 // Matches with "/api/signin/
 router.route("/")
-.post(userSessionController.create);
+.post(userSessionController.findOne);
 
 module.exports = router;
