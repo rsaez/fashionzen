@@ -1,3 +1,4 @@
 module.exports = {
-  Closet: require("./closet")
+  Closet: require("./closet"),
+  User: require("./User")
 };

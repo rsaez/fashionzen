@@ -11,8 +11,7 @@ class Home extends Component {
             <div>
                 <Nav>
                 </Nav>
-                <LogInBtn />
-                <SignUpBtn/>
+                <SignUpInForm/>
                 <Card>
                     <h1>Home Page</h1>
                 </Card>
