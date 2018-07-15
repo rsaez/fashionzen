@@ -102,11 +102,10 @@ module.exports = {
     // Get the token
     let query = req.body.query;
     let token = req.body.token;
-    const userSession = new db.UserSession();
 
     // ?token=test
     // Verify the token is one of a kind and it's not deleted.
-    UserSession.findOneAndUpdate({
+    db.UserSession.findOneAndUpdate({
       _id: token,
       isDeleted: false
     }, {
