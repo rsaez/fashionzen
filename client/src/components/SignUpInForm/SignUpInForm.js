@@ -6,7 +6,7 @@ import {
   setInStorage,
 } from '../../utils/storage';
 
-class Home extends Component {
+class SignUpInForm extends Component {
   constructor(props) {
     super(props);
 
@@ -93,7 +93,7 @@ class Home extends Component {
     });
 
     // Post request to backend
-    fetch('/api/signup/', {
+    fetch('/api/auth/signup/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -133,7 +133,7 @@ class Home extends Component {
     });
 
     // Post request to backend
-    fetch('/api/signin', {
+    fetch('/api/auth/signin', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -171,7 +171,7 @@ class Home extends Component {
     if (obj && obj.token) {
       const { token } = obj;
       // Verify token
-      fetch('/api/account/logout?token=' + token)
+      fetch('/api/auth/logout?token=' + token)
         .then(res => res.json())
         .then(json => {
           if (json.success) {
@@ -271,4 +271,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default SignUpInForm;
