@@ -11,9 +11,12 @@ export default {
     },
     // Deletes the book with the given id
     deleteCloset: function(id) {
-    return axios.delete("/api/closet/" + id);
-  },
-    getImage: function(){
-
+      return axios.delete("/api/closet/" + id);
+    },
+    // SignUpInForm post function
+    saveSignUp: function(creds){
+      return axios.post("/api/signup", creds);
     }
+
+
 };
