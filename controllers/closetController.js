@@ -10,7 +10,15 @@ module.exports = {
   },
 
   create: function(req, res) {
-    db.Closet.create(req.body)
+
+   // pull image out of req.body
+
+   // process the image data
+
+   // combine image with req.body and save it to a var called proccessed
+
+
+    db.Closet.create(req.body) // replace with variable called proccessed
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },

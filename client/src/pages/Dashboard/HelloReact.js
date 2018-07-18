@@ -14,7 +14,7 @@ class HelloReact extends Component {
         clothingType: "",
         color: "",
         material: "",
-        image: null
+        image: []
     };
 
     componentDidMount() {
@@ -47,7 +47,7 @@ class HelloReact extends Component {
             clothingType: this.state.clothingType,
             color: this.state.color,
             material: this.state.material,
-            image: this.state.image
+            // image: this.state.file
           })
             .then(res => this.loadClothes())
             .catch(err => console.log(err));
@@ -61,13 +61,33 @@ class HelloReact extends Component {
             .catch(err => console.log(err));
     };
 
-    fileChangedHandler = (event) => {
-        this.setState({image: event.target.files[0]})
+
+
+    handlePush = (event) => {
+        event.preventDefault();
+        console.log('handle uploading', this.state.file);
+        API.getImage();
+        //todo axios
     };
 
-    uploadHandler = () => {
-       axios.post("/api/upload", this.state.image);
+    handleImageChange = (event) => {
+        event.preventDefault();
+        let reader = new FileReader();
+        let file = event.target.files[0];
+        reader.onloadend = () => {
+            this.setState({
+                file: file,
+                imagePreviewUrl: reader.result
+            });
+        };
+        reader.readAsDataURL(file)
     };
+
+    // uploadHandler = () => {
+    //     const formData = new FormData();
+    //     formData.append('myFile', this.state.image, this.state.image.name);
+    //     axios.post("picture", formData);
+    // };
 
 
     readURL = (input) => {
@@ -85,13 +105,23 @@ class HelloReact extends Component {
 
 
     render() {
+
+        let {imagePreviewUrl} = this.state;
+        let $imagePreview = null;
+        if (imagePreviewUrl){
+            $imagePreview = (<img src = {imagePreviewUrl} />);
+        } else {
+            $imagePreview = (<div className = "previewtext" />)
+        }
         return(
             <div>
                  <Nav>
                 </Nav>
                 <LogOutBtn></LogOutBtn>
                 <Card>
+
                 <h1>Hello World!</h1>
+
                 {/* TODO: turn this form (article display) into a component then run the map function on it*/}
                 <ul>
                 {this.state.clothes.map(clothes => 
@@ -101,7 +131,6 @@ class HelloReact extends Component {
                     </li>
                 )}
                 </ul>
-                {/*article display end*/}
 
                 
                 {/*Form to add clothing item*/}
@@ -112,11 +141,16 @@ class HelloReact extends Component {
                     <input type="text" name="clothingType" value={this.state.clothingType} onChange={this.handleChange} placeholder="clothingType"/>
                     <input type="text" name="color" value={this.state.color} onChange={this.handleChange} placeholder="color"/>
                     <input type="text" name="material" value={this.state.material} onChange={this.handleChange} placeholder="material"/>
-                    <input type='file' onChange={this.fileChangedHandler} placeholder="image" />
-                    <img name="image"  src={this.state.image} alt="your image" />
-                    <input type="submit" onClick={this.uploadHandler} value="Submit" />
+                    <input type='file' onChange={this.handleImageChange} placeholder="image" />
+
+                    <input type="submit" value="Submit" />
+                    <input type="submit" onClick={this.handlePush} value="Push Image" />
                 </form>
-                {/*input form end*/}
+                    <div className="previewComponent" />
+                    <div className="imgPreview">
+                        {$imagePreview}
+                    </div>
+
                 </Card>
 
 

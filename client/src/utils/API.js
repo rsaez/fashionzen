@@ -13,7 +13,7 @@ export default {
     deleteCloset: function(id) {
     return axios.delete("/api/closet/" + id);
   },
-    getImage: function(){
-
+    getImage: function(image){
+    return axios.post("/testImage", image);
     }
 };

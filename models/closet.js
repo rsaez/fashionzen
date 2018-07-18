@@ -7,6 +7,7 @@ const closetSchema = new Schema({
   clothingType: { type: String, required: true },
   color: { type: String, required: true },
   material: { type: String, required: true },
+  image: {type: Buffer, required: false},
   date: { type: Date, default: Date.now }
 });
 
