@@ -54,7 +54,8 @@ module.exports = {
         return res.send({
           success: true,
           message: 'Valid sign in',
-          token: doc._id
+          token: doc._id,
+          userInfo: user._id 
         }); // end of return
 
       });  //end of User Session.save
