@@ -3,6 +3,7 @@ import API from "../../utils/API";
 import Nav from "../../components/Nav";
 import LogOutBtn from "../../components/LogOutBtn";
 import Card from "../../components/Card/index";
+import { getFromStorage } from "../../utils/storage";
 
 class HelloReact extends Component {
 
@@ -13,17 +14,24 @@ class HelloReact extends Component {
         clothingType: "",
         color: "",
         material: "",
-        image: ""
+        image: "",
+        userData: ""
     };
 
     componentDidMount() {
-        this.loadClothes();
+        // grab the local storage object the the API methods store local storage too
+        const userDataT = getFromStorage('the_main_app');
+        // set local storage into state
+        this.setState({userData: userDataT.userToken},()=> {
+            // use a call back function after state has been set to pass the data to the load function
+            this.loadClothes(this.state.userData);
+        });
     };
 
     // Loads all documents from db and and sets them to this.state.clothes
-    loadClothes = () => {
-       API.getCloset()
-       .then(res => this.setState({clothes: res.data}, () => console.log("GET request worked:", this.state.clothes)))
+    loadClothes = (id) => {
+       API.getCloset(id)
+       .then(res => this.setState({clothes: res.data}))
        .catch(err => console.log(err));
     };
 
@@ -39,16 +47,19 @@ class HelloReact extends Component {
     // handle submition of user data then reloads data
     handleSubmit = (event) => {
         event.preventDefault();
-        if (this.state.user && this.state.articleName && this.state.clothingType && this.state.color && this.state.material) {
+        if (this.state.userData && this.state.articleName && this.state.clothingType && this.state.color && this.state.material) {
+
           API.saveCloset({
-            user: this.state.user,
+            user: this.state.userData,
             articleName: this.state.articleName,
             clothingType: this.state.clothingType,
             color: this.state.color,
             material: this.state.material
           })
-            .then(res => this.loadClothes())
+            .then(res => this.loadClothes(this.state.userData))
             .catch(err => console.log(err));
+        } else {
+            alert("submit failed");
         }
     };
     
@@ -81,11 +92,12 @@ class HelloReact extends Component {
                 <LogOutBtn></LogOutBtn>
                 <Card>
                 <h1>Hello World!</h1>
-                {/* TODO: turn this form (article display) into a component then run the map function on it*/}
+                {/* Turn this form (article display) into a component then run the map function on it*/}
                 <ul>
+                    {console.log(this.state.clothes)}
                 {this.state.clothes.map(clothes => 
                     <li key={clothes._id}>
-                        {clothes.user} {clothes.articleName} {clothes.clothingType} {clothes.color} 
+                        {clothes.articleName} {clothes.clothingType} {clothes.color} {clothes.material}
                         <span onClick={() => this.deleteClothes(clothes._id)}>DELETE</span>
                     </li>
                 )}
@@ -96,7 +108,6 @@ class HelloReact extends Component {
                 {/*Form to add clothing item*/}
                 <form onSubmit={this.handleSubmit}>
                     <label>Input Clothes</label>
-                    <input type="text" name="user" value={this.state.user} onChange={this.handleChange} placeholder="user"/>
                     <input type="text" name="articleName" value={this.state.articleName} onChange={this.handleChange} placeholder="articleName"/>
                     <input type="text" name="clothingType" value={this.state.clothingType} onChange={this.handleChange} placeholder="clothingType"/>
                     <input type="text" name="color" value={this.state.color} onChange={this.handleChange} placeholder="color"/>

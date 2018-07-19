@@ -36,7 +36,7 @@ class SignUpInForm extends Component {
     if (obj && obj.token) {
       const { token } = obj;
       // Verify token
-      fetch('/api/account/verify?token=' + token)
+      fetch('/api/auth/verify?token=' + token)
         .then(res => res.json())
         .then(json => {
           if (json.success) {
@@ -144,9 +144,9 @@ class SignUpInForm extends Component {
       }),
     }).then(res => res.json())
       .then(json => {
-        console.log('json', json);
+        // Store the user token and data in local storage 
         if (json.success) {
-          setInStorage('the_main_app', { token: json.token });
+          setInStorage('the_main_app', { token: json.token, userToken: json.userInfo });
           this.setState({
             signInError: json.message,
             isLoading: false,
@@ -154,6 +154,7 @@ class SignUpInForm extends Component {
             signInEmail: '',
             token: json.token,
           });
+
         } else {
           this.setState({
             signInError: json.message,

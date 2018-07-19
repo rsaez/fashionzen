@@ -2,8 +2,8 @@ import axios from "axios";
 
 export default {
     // Gets all clothes
-    getCloset: function() {
-        return axios.get("/api/closet");
+    getCloset: function(id) {
+        return axios.get("/api/closet/" + id);
     },
     // Saves clothes to the database
     saveCloset: function(clothesData) {
