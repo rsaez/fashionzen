@@ -4,7 +4,12 @@ const db = require("../models");
 module.exports = {
 
   findAll: function(req, res) {
-    db.Closet.find(req.body)
+
+    console.log("========================");
+    console.log(req.params.id);
+
+    db.Closet
+    .find({ user: req.params.id })
     .then(dbModel => res.json(dbModel))
     .catch(err => res.status(422).json(err));
   },
