@@ -1,14 +1,10 @@
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Dashboard from "./pages/Dashboard";
-import Home from "./pages/Home";
-import Footer from "./components/Footer";
 import React, { Component } from 'react';
 import 'whatwg-fetch';
 
 import {
   getFromStorage,
   setInStorage,
-} from './utils/storage';
+} from '../../utils/storage';
 
 class SignUpInForm extends Component {
   constructor(props) {
@@ -148,7 +144,7 @@ class SignUpInForm extends Component {
       }),
     }).then(res => res.json())
       .then(json => {
-        // Store the user token and data in local storage
+        // Store the user token and data in local storage 
         if (json.success) {
           setInStorage('the_main_app', { token: json.token, userToken: json.userInfo });
           this.setState({
@@ -216,13 +212,7 @@ class SignUpInForm extends Component {
     if (!token) {
       return (
         <div>
-        <div>
-          <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-              <a className="navbar-brand" href="/">
-                  Fashionzen
-              </a>
-
-          <div className="float-right">
+          <div>
             {
               (signInError) ? (
                 <p>{signInError}</p>
@@ -247,7 +237,7 @@ class SignUpInForm extends Component {
           </div>
           <br />
           <br />
-          <div className="float-right">
+          <div>
             {
               (signUpError) ? (
                 <p>{signUpError}</p>
@@ -268,45 +258,18 @@ class SignUpInForm extends Component {
             /><br />
             <button onClick={this.onSignUp}>Sign Up</button>
           </div>
-          </nav>
 
-        </div>
-        <div>
-          <Home/>
-        </div>
         </div>
       );
     }
 
     return (
       <div>
-      <div>
-        <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-          <a className="navbar-brand" href="/">
-              Fashionzen
-          </a>
-          <button className="float-right" onClick={this.logout}>Logout</button>
-        </nav>
-      </div>
-      <div>
-        <Dashboard/>
-      </div>
+        <p>Account</p>
+        <button onClick={this.logout}>Logout</button>
       </div>
     );
   }
 }
 
-
-const App = () =>(
-    <Router>
-        <div>
-            <Switch>
-                <SignUpInForm/>
-                <Route exact path ="/" component={Home} />
-                <Route exact path ="/Dashboard" component={Dashboard} />
-            </Switch>
-            <Footer />
-        </div>
-    </Router>
-);
-export default App;
+export default SignUpInForm;
