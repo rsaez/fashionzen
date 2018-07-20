@@ -5,7 +5,7 @@ module.exports = {
 
   findAll: function(req, res) {
 
-    console.log("========================");
+    console.log("=========Find Route==========");
     console.log(req.params.id);
 
     db.Closet
@@ -21,6 +21,10 @@ module.exports = {
   },
 
   remove: function(req, res) {
+
+    console.log("=======Remove Route=========");
+    console.log(req.params.id);
+
     db.Closet
       .findById({ _id: req.params.id })
       .then(dbModel => dbModel.remove())
