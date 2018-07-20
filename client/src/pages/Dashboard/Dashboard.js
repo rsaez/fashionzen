@@ -5,12 +5,12 @@ import LogOutBtn from "../../components/LogOutBtn";
 import Card from "../../components/Card/index";
 import { getFromStorage } from "../../utils/storage";
 
-class HelloReact extends Component {
+class Dashboard extends Component {
 
     state = {
         clothes: [],
         user: "",
-        articleName: "", 
+        articleName: "",
         clothingType: "",
         color: "",
         material: "",
@@ -42,8 +42,8 @@ class HelloReact extends Component {
         this.setState({
           [name]: value
         });
-    }; 
-    
+    };
+
     // handle submition of user data then reloads data
     handleSubmit = (event) => {
         event.preventDefault();
@@ -62,7 +62,7 @@ class HelloReact extends Component {
             alert("submit failed");
         }
     };
-    
+
     // Delete clothing from the database and reload page
     deleteClothes = (id) => {
         API.deleteCloset(id)
@@ -87,15 +87,12 @@ class HelloReact extends Component {
     render() {
         return(
             <div>
-                 <Nav>
-                </Nav>
-                <LogOutBtn></LogOutBtn>
                 <Card>
-                <h1>Hello World!</h1>
+                <h1>Welcome! Check out your wardrobe.</h1>
                 {/* Turn this form (article display) into a component then run the map function on it*/}
                 <ul>
                     {console.log(this.state.clothes)}
-                {this.state.clothes.map(clothes => 
+                {this.state.clothes.map(clothes =>
                     <li key={clothes._id}>
                         {clothes.articleName} {clothes.clothingType} {clothes.color} {clothes.material}
                         <span onClick={() => this.deleteClothes(clothes._id)}>DELETE</span>
@@ -104,7 +101,7 @@ class HelloReact extends Component {
                 </ul>
                 {/*article display end*/}
 
-                
+
                 {/*Form to add clothing item*/}
                 <form onSubmit={this.handleSubmit}>
                     <label>Input Clothes</label>
@@ -125,4 +122,4 @@ class HelloReact extends Component {
     }
 }
 
-export default HelloReact;
+export default Dashboard;
