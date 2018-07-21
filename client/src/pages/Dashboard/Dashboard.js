@@ -123,7 +123,7 @@ class Dashboard extends Component {
 
         let files = document.getElementById('fileinput').files;
         if (!files.length) {
-            return alert('Please choose a file to upload first.');
+            return console.log('Please choose a file to upload first.');
         }
         let file = files[0];
         let fileName = file.name;
@@ -143,7 +143,7 @@ class Dashboard extends Component {
             }
             console.log("this is the data returned from aws");
             console.log(data);
-            alert('Successfully uploaded photo.');
+            console.log('Successfully uploaded photo.');
 
         });
     };
@@ -191,13 +191,12 @@ class Dashboard extends Component {
             <div>
                 <Card>
                 <h1>Welcome! Check out your wardrobe.</h1>
-                {/* Turn this form (article display) into a component then run the map function on it
-                    {clothes.articleName} {clothes.clothingType} {clothes.color} {clothes.material}
-                */}
+                {/* USER DATA BLOCKS: Turn this form (article display) into a component then run the map function on it*/}
                 <ul>
-                    {console.log(this.state.clothes)}
                 {this.state.clothes.map(clothes =>
                     <li key={clothes._id}>
+
+                    <img src="https://s3.amazonaws.com/fashionzen/test.png" height="75" width="75"></img>
 
                     <input type="text" name={clothes.articleName} value={clothes.articleName}  
                         onChange={(e) => this.handleListChange(clothes._id, "articleName", e)} placeholder="articleName"/>
@@ -211,27 +210,27 @@ class Dashboard extends Component {
                     <input type="text" name={clothes.material} value={clothes.material} 
                     onChange={(e) => this.handleListChange(clothes._id, "material", e)} placeholder="material"/>
 
-                        <span onClick={() => this.deleteClothes(clothes._id)}>DELETE</span>
-                        <span onClick={() => this.updateClothes(clothes._id, clothes)}>UPDATE</span>
+                    <input type="submit" value="Delete" onClick={() => this.deleteClothes(clothes._id)} />
+                    <input type="submit" value="Update" onClick={() => this.updateClothes(clothes._id, clothes)} />
+                        
                     </li>
                 )}
                 </ul>
-                {/*article display end*/}
+                {/*USER DATA BLOCK ENDS*/}
 
 
-                {/*Form to add clothing item*/}
+                {/*INPUT BLOCK: Form to add clothing item*/}
                 <form onSubmit={this.handleSubmit}>
-                    <label>Input Clothes</label>
-                    <input type="text" name="articleName" value={this.state.articleName} onChange={this.handleChange} placeholder="articleName"/>
-                    <input type="text" name="clothingType" value={this.state.clothingType} onChange={this.handleChange} placeholder="clothingType"/>
+                    <label>Input Clothes:</label>
+                    <input type="text" name="articleName" value={this.state.articleName} onChange={this.handleChange} placeholder="article name"/>
+                    <input type="text" name="clothingType" value={this.state.clothingType} onChange={this.handleChange} placeholder="brand"/>
                     <input type="text" name="color" value={this.state.color} onChange={this.handleChange} placeholder="color"/>
                     <input type="text" name="material" value={this.state.material} onChange={this.handleChange} placeholder="material"/>
                     <input type='file' ref="fileinput" id="fileinput"  onChange={this.handleImageChange} placeholder="image" />
                     <br/><br/>
-                    <input type="submit" value="Submit"/>
-                    <input type="submit" onClick={this.addPhoto} value="Push Image" />
+                    <input type="submit" onClick={this.addPhoto} value="Submit" />
                 </form>
-                {/*input form end*/}
+                {/*INPUT BLOCK:*/}
 
                  <div className="previewComponent" />
                     <div className="imgPreview">
