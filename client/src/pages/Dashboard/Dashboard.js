@@ -89,12 +89,14 @@ class Dashboard extends Component {
             <div>
                 <Card>
                 <h1>Welcome! Check out your wardrobe.</h1>
-                {/* Turn this form (article display) into a component then run the map function on it*/}
+                {/* Turn this form (article display) into a component then run the map function on it
+                    {clothes.articleName} {clothes.clothingType} {clothes.color} {clothes.material}
+                */}
                 <ul>
                     {console.log(this.state.clothes)}
                 {this.state.clothes.map(clothes =>
                     <li key={clothes._id}>
-                        {clothes.articleName} {clothes.clothingType} {clothes.color} {clothes.material}
+                        
                         <span onClick={() => this.deleteClothes(clothes._id)}>DELETE</span>
                     </li>
                 )}

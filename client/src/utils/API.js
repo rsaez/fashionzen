@@ -13,6 +13,10 @@ export default {
     deleteCloset: function(id) {
       return axios.delete("/api/closet/" + id);
     },
+    // Deletes the book with the given id
+    updateCloset: function(id) {
+        return axios.put("/api/closet/" + id);
+    },
     // SignUpInForm post function
     saveSignUp: function(creds){
       return axios.post("/api/signup", creds);

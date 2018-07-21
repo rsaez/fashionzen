@@ -9,6 +9,7 @@ router.route("/")
 router
 .route("/:id")
 .get(closetController.findAll)
+.put(closetController.update)
 .delete(closetController.remove);
 
 module.exports = router;
