@@ -16,13 +16,7 @@ class Dashboard extends Component {
         color: "",
         material: "",
         image: "",
-        userData: "",
-
-        updateArticle: "",
-        updateClothing: "",
-        updateColor: "",
-        updateMaterial: ""
-
+        userData: ""
     };
 
     componentDidMount() {
@@ -57,8 +51,8 @@ class Dashboard extends Component {
         let clothesChange = this.state.clothes.slice();
         // find position of object in an array
         let elementPos = clothesChange.map(function(x) {return x._id; }).indexOf(docID);
-        // Update it with the modified value.
-
+        
+        // Update it with the modified value. Only update the one the user it typing in
         switch (field) {
             case "articleName":
                 clothesChange[elementPos].articleName = event.target.value;
