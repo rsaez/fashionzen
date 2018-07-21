@@ -9,6 +9,7 @@ class Dashboard extends Component {
 
     state = {
         clothes: [],
+
         user: "",
         articleName: "",
         clothingType: "",
@@ -42,6 +43,39 @@ class Dashboard extends Component {
         this.setState({
           [name]: value
         });
+    };
+
+    // handle change in the map list which requires a key
+    handleListChange = (docID, field, event) => {
+        // Make a copy of clothes first. Use slice with no params to create a shadow copy of the array
+        let clothesChange = this.state.clothes.slice();
+        // find position of object in an array
+        let elementPos = clothesChange.map(function(x) {return x._id; }).indexOf(docID);
+        
+        // Update it with the modified value. Only update the one the user it typing in
+        switch (field) {
+            case "articleName":
+                clothesChange[elementPos].articleName = event.target.value;
+                break;
+            case "clothingType":
+                clothesChange[elementPos].clothingType = event.target.value;
+                break;
+            case "color":
+                clothesChange[elementPos].color = event.target.value;
+                break;
+            case "material":
+                clothesChange[elementPos].material = event.target.value; 
+                break;
+        };
+        // Update the state.
+        this.setState({clothes: clothesChange}); 
+    };
+
+
+    updateClothes = (id, body) => {
+        API.updateCloset(id, body)
+            .then(res => this.loadClothes(this.state.userData), console.log("updated"))
+            .catch(err => console.log(err));
     };
 
     // handle submition of user data then reloads data
@@ -89,13 +123,28 @@ class Dashboard extends Component {
             <div>
                 <Card>
                 <h1>Welcome! Check out your wardrobe.</h1>
-                {/* Turn this form (article display) into a component then run the map function on it*/}
+                {/* Turn this form (article display) into a component then run the map function on it
+                    {clothes.articleName} {clothes.clothingType} {clothes.color} {clothes.material}
+                */}
                 <ul>
                     {console.log(this.state.clothes)}
                 {this.state.clothes.map(clothes =>
                     <li key={clothes._id}>
-                        {clothes.articleName} {clothes.clothingType} {clothes.color} {clothes.material}
+
+                    <input type="text" name={clothes.articleName} value={clothes.articleName}  
+                        onChange={(e) => this.handleListChange(clothes._id, "articleName", e)} placeholder="articleName"/>
+
+                    <input type="text" name={clothes.clothingType} value={clothes.clothingType} 
+                    onChange={(e) => this.handleListChange(clothes._id, "clothingType", e)} placeholder="clothingType"/>
+
+                    <input type="text" name={clothes.color} value={clothes.color} 
+                    onChange={(e) => this.handleListChange(clothes._id, "color", e)} placeholder="color"/>
+
+                    <input type="text" name={clothes.material} value={clothes.material} 
+                    onChange={(e) => this.handleListChange(clothes._id, "material", e)} placeholder="material"/>
+
                         <span onClick={() => this.deleteClothes(clothes._id)}>DELETE</span>
+                        <span onClick={() => this.updateClothes(clothes._id, clothes)}>UPDATE</span>
                     </li>
                 )}
                 </ul>
