@@ -20,6 +20,7 @@
     "nodemon": "^1.11.0"
   },
   "dependencies": {
+    "aws-sdk": "^2.279.1",
     "axios": "^0.16.2",
     "bcrypt": "^3.0.0",
     "body-parser": "^1.17.2",

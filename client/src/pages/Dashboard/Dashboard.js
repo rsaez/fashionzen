@@ -5,6 +5,20 @@ import LogOutBtn from "../../components/LogOutBtn";
 import Card from "../../components/Card/index";
 import { getFromStorage } from "../../utils/storage";
 
+const AWS = require('aws-sdk');
+let albumBucketName = 'fashionzen';
+let bucketRegion = 'us-east-1';
+let IdentityPoolId = 'us-east-1:788ae7bc-168e-4862-9715-6e42e1c6deef';
+
+AWS.config.update({
+   region: bucketRegion,
+    credentials: new AWS.CognitoIdentityCredentials({
+        IdentityPoolId: IdentityPoolId
+    })
+});
+
+let s3 = new AWS.S3({apiVersion: '2006-03-01'});
+
 class Dashboard extends Component {
 
     state = {
@@ -104,6 +118,51 @@ class Dashboard extends Component {
             .catch(err => console.log(err));
     };
 
+    // aws add image
+    addPhoto = (albumName) => {
+
+        let files = document.getElementById('fileinput').files;
+        if (!files.length) {
+            return alert('Please choose a file to upload first.');
+        }
+        let file = files[0];
+        let fileName = file.name;
+        //let albumPhotosKey = albumName + '//';
+
+        let photoKey = fileName;
+        console.log("Uploading...", file);
+        s3.putObject({
+            Bucket: "fashionzen",
+            Key: photoKey,
+            Body: file
+            //ACL: 'public-read'
+        }, function(err, data) {
+            if (err) {
+                console.log(err);
+                return err;
+            }
+            console.log("this is the data returned from aws");
+            console.log(data);
+            alert('Successfully uploaded photo.');
+
+        });
+    };
+
+    // preview image function
+    handleImageChange = (event) => {
+        event.preventDefault();
+        let reader = new FileReader();
+        let file = event.target.files[0];
+        reader.onloadend = () => {
+            this.setState({
+                file: file,
+                imagePreviewUrl: reader.result
+            });
+        };
+        reader.readAsDataURL(file);
+    };
+
+
     readURL = (input) => {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
@@ -119,6 +178,15 @@ class Dashboard extends Component {
 
 
     render() {
+
+        let {imagePreviewUrl} = this.state;
+        let $imagePreview = null;
+        if (imagePreviewUrl){
+            $imagePreview = (<img src = {imagePreviewUrl} />);
+        } else {
+            $imagePreview = (<div className = "previewtext" />)
+        }
+
         return(
             <div>
                 <Card>
@@ -158,11 +226,18 @@ class Dashboard extends Component {
                     <input type="text" name="clothingType" value={this.state.clothingType} onChange={this.handleChange} placeholder="clothingType"/>
                     <input type="text" name="color" value={this.state.color} onChange={this.handleChange} placeholder="color"/>
                     <input type="text" name="material" value={this.state.material} onChange={this.handleChange} placeholder="material"/>
-                    <input type='file' onChange={this.readURL} placeholder="img.jpeg"/>
-                    <img name="image"  src={this.state.image} alt="your image" /><br/><br/>
+                    <input type='file' ref="fileinput" id="fileinput"  onChange={this.handleImageChange} placeholder="image" />
+                    <br/><br/>
                     <input type="submit" value="Submit"/>
+                    <input type="submit" onClick={this.addPhoto} value="Push Image" />
                 </form>
                 {/*input form end*/}
+
+                 <div className="previewComponent" />
+                    <div className="imgPreview">
+                    {$imagePreview}
+                </div>
+
                 </Card>
 
 
