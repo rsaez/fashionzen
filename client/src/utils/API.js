@@ -14,8 +14,8 @@ export default {
       return axios.delete("/api/closet/" + id);
     },
     // Deletes the book with the given id
-    updateCloset: function(id) {
-        return axios.put("/api/closet/" + id);
+    updateCloset: function(id, body) {
+        return axios.put("/api/closet/" + id, body);
     },
     // SignUpInForm post function
     saveSignUp: function(creds){
