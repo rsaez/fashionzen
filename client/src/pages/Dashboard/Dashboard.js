@@ -100,7 +100,7 @@ class Dashboard extends Component {
     // Delete clothing from the database and reload page
     deleteClothes = (id) => {
         API.deleteCloset(id)
-            .then(res => this.loadClothes(this.state.userData))
+            .then(res => this.loadClothes())
             .catch(err => console.log(err));
     };
 
