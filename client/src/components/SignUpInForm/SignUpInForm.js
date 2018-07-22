@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Dashboard from "../../pages/Dashboard";
 import Home from "../../pages/Home";
 import 'whatwg-fetch';
+import "./SignUpInForm.css";
 
 import {
   getFromStorage,
@@ -214,62 +215,60 @@ class SignUpInForm extends Component {
     if (!token) {
       return (
         <div>
-        <div>
+        <div >
           <nav className="navbar navbar-dark bg-primary">
-              <a className="navbar-brand" href="/">
+              <a className="navbar-brand1" href="/">
                   Fashionzen
               </a>
 
-          <div className="float-right">
+          <div className="signIn">
             {
               (signInError) ? (
                 <p>{signInError}</p>
               ) : (null)
             }
-            <p>Sign In</p>
             <input
-              type="email"
+              className="email"
               placeholder="Email"
               value={signInEmail}
               onChange={this.onTextboxChangeSignInEmail}
             />
-            <br />
             <input
+              className="password"
               type="password"
               placeholder="Password"
               value={signInPassword}
               onChange={this.onTextboxChangeSignInPassword}
             />
-            <br />
-            <button className="btn btn-warning" onClick={this.onSignIn}>Sign In</button>
-          </div>
-          <br />
-          <br />
-          <div className="float-right">
+            <button id="signin" className="btn btn-warning" onClick={this.onSignIn}>Sign In</button>
+            <br/>
+
             {
               (signUpError) ? (
                 <p>{signUpError}</p>
               ) : (null)
             }
-            <p>Sign Up</p>
             <input
+              className="email"
               type="email"
               placeholder="Email"
               value={signUpEmail}
               onChange={this.onTextboxChangeSignUpEmail}
-            /><br />
+            />
             <input
+              className="password"
               type="password"
               placeholder="Password"
               value={signUpPassword}
               onChange={this.onTextboxChangeSignUpPassword}
-            /><br />
-            <button className="btn btn-warning" onClick={this.onSignUp}>Sign Up</button>
+            />
+            <button id="signup" className="btn btn-warning" onClick={this.onSignUp}>Sign Up</button>
           </div>
           </nav>
-
+        <br/>
+        <br/>
         </div>
-        <div>
+        <div className="container" >
           <Home/>
         </div>
         </div>

@@ -4,6 +4,7 @@ import Nav from "../../components/Nav";
 import LogOutBtn from "../../components/LogOutBtn";
 import Card from "../../components/Card/index";
 import { getFromStorage } from "../../utils/storage";
+import "./Dashboard.css";
 
 const AWS = require('aws-sdk');
 let albumBucketName = 'fashionzen';
@@ -191,7 +192,7 @@ class Dashboard extends Component {
         return(
             <div className="container">
 
-                <br/><br/><h1>Welcome! Check out your wardrobe.</h1><br/><br/>
+                <br/><br/><h1 >Welcome! Check out your wardrobe.</h1><br/><br/>
                 {/* USER DATA BLOCKS: Turn this form (article display) into a component then run the map function on it*/}
                 <Card >
                     <div className="card-body">
@@ -200,7 +201,7 @@ class Dashboard extends Component {
                     <div  key={clothes._id}>
 
 
-                    <img src={clothes.image} height="75" width="75"></img>
+                    <img className="dbimg" src={clothes.image} height="75" width="75"></img>
 
                     <input type="text" name={clothes.articleName} value={clothes.articleName}  
                         onChange={(e) => this.handleListChange(clothes._id, "articleName", e)} placeholder="articleName"/>
@@ -229,14 +230,14 @@ class Dashboard extends Component {
 
                 {/*INPUT BLOCK: Form to add clothing item*/}
                 <form onSubmit={this.handleSubmit}>
-                    <label>Input Clothes:</label>
+
                     <input type="text" name="articleName" value={this.state.articleName} onChange={this.handleChange} placeholder="article name"/>
                     <input type="text" name="clothingType" value={this.state.clothingType} onChange={this.handleChange} placeholder="brand"/>
                     <input type="text" name="color" value={this.state.color} onChange={this.handleChange} placeholder="color"/>
                     <input type="text" name="material" value={this.state.material} onChange={this.handleChange} placeholder="material"/>
                     <input type='file' ref="fileinput" id="fileinput"  onChange={this.handleImageChange} placeholder="image" />
-                    <br/><br/>
-                    <input type="submit" onClick={this.addPhoto} value="Submit" />
+                    <br/>
+                    <input type="submit" className="btn btn-warning" onClick={this.addPhoto} value="Submit" />
                 </form>
                 {/*INPUT BLOCK:*/}
 

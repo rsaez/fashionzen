@@ -10,6 +10,10 @@ const App = () =>(
             <Switch>
                 <Route exact path ="/" component={SignUpInForm} />
             </Switch>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
             <Footer />
         </div>
     </Router>
