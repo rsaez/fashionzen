@@ -102,7 +102,8 @@ class Dashboard extends Component {
             articleName: this.state.articleName,
             clothingType: this.state.clothingType,
             color: this.state.color,
-            material: this.state.material
+            material: this.state.material,
+            image: "https://uniqlo.scene7.com/is/image/UNIQLO/goods_65_408350?$detail$"
           })
             .then(res => this.loadClothes(this.state.userData))
             .catch(err => console.log(err));
@@ -114,7 +115,7 @@ class Dashboard extends Component {
     // Delete clothing from the database and reload page
     deleteClothes = (id) => {
         API.deleteCloset(id)
-            .then(res => this.loadClothes())
+            .then(res => this.loadClothes(this.state.userData))
             .catch(err => console.log(err));
     };
 
@@ -182,7 +183,7 @@ class Dashboard extends Component {
         let {imagePreviewUrl} = this.state;
         let $imagePreview = null;
         if (imagePreviewUrl){
-            $imagePreview = (<img src = {imagePreviewUrl} />);
+            $imagePreview = (<img src = {imagePreviewUrl} height="150" width="150" />);
         } else {
             $imagePreview = (<div className = "previewtext" />)
         }
@@ -193,10 +194,13 @@ class Dashboard extends Component {
                 <br/><br/><h1>Welcome! Check out your wardrobe.</h1><br/><br/>
                 {/* USER DATA BLOCKS: Turn this form (article display) into a component then run the map function on it*/}
                 <Card>
+          
                 {this.state.clothes.map(clothes =>
                     <div key={clothes._id}>
 
                     <img src="https://s3.amazonaws.com/fashionzen/test.png" height="75" width="75"></img>
+
+                    <img src={clothes.image} height="75" width="75"></img>
 
                     <input type="text" name={clothes.articleName} value={clothes.articleName}  
                         onChange={(e) => this.handleListChange(clothes._id, "articleName", e)} placeholder="articleName"/>
@@ -219,6 +223,7 @@ class Dashboard extends Component {
                 {/*USER DATA BLOCK ENDS*/}
 
                 <Card>
+                  
                 {/*INPUT BLOCK: Form to add clothing item*/}
                 <form onSubmit={this.handleSubmit}>
                     <label>Input Clothes:</label>
