@@ -189,16 +189,16 @@ class Dashboard extends Component {
         }
 
         return(
-            <div>
+            <div className="container">
 
                 <br/><br/><h1>Welcome! Check out your wardrobe.</h1><br/><br/>
                 {/* USER DATA BLOCKS: Turn this form (article display) into a component then run the map function on it*/}
-                <Card>
+                <Card >
+                    <div className="card-body">
           
                 {this.state.clothes.map(clothes =>
-                    <div key={clothes._id}>
+                    <div  key={clothes._id}>
 
-                    <img src="https://s3.amazonaws.com/fashionzen/test.png" height="75" width="75"></img>
 
                     <img src={clothes.image} height="75" width="75"></img>
 
@@ -219,11 +219,14 @@ class Dashboard extends Component {
                         
                     </div>
                 )}
+                    </div>
                 </Card>
                 {/*USER DATA BLOCK ENDS*/}
+                <br/>
+                <br/>
 
                 <Card>
-                  
+
                 {/*INPUT BLOCK: Form to add clothing item*/}
                 <form onSubmit={this.handleSubmit}>
                     <label>Input Clothes:</label>
