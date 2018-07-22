@@ -1,8 +1,8 @@
 import React from "react";
 
 const Footer = () => (
-<nav className="navbar fixed-bottom navbar-light bg-light">
-    <a className="navbar-brand" href="#">Fashionzen 2018</a>
+<nav className="navbar navbar-light bg-light fixed-bottom">
+    <a className="navbar-brand2">Fashionzen 2018</a>
 </nav>
 );
 

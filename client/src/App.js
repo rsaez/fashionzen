@@ -1,7 +1,5 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import SignUpInForm from "./components/SignUpInForm";
-import Dashboard from "./pages/Dashboard";
-import Home from "./pages/Home";
 import Footer from "./components/Footer";
 import React, { Component } from 'react';
 import 'whatwg-fetch';
@@ -12,6 +10,10 @@ const App = () =>(
             <Switch>
                 <Route exact path ="/" component={SignUpInForm} />
             </Switch>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
             <Footer />
         </div>
     </Router>

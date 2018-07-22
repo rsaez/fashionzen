@@ -1,0 +1,36 @@
+#signin{
+    height: 35px;
+    margin-top: 0px;
+    margin-bottom: 5px;
+}
+#signup{
+    height: 35px;
+    width: 82px;
+    margin-top: 0px;
+    margin-bottom: 5px;
+}
+.signIn{
+    float:right;
+}
+.email{
+    margin: 2px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+.password{
+    margin: 2px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.navbar-brand{
+    font-family: 'Kalam', cursive;
+    font-size: 30px;
+}
+
+.navbar-brand1{
+    color: white;
+    hover: white;
+    font-size: 30px;
+    font-family: 'Kalam', cursive;
+}
