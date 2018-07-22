@@ -190,12 +190,15 @@ class Dashboard extends Component {
 
         return(
             <div>
-                <Card>
-                <h1>Welcome! Check out your wardrobe.</h1>
+
+                <br/><br/><h1>Welcome! Check out your wardrobe.</h1><br/><br/>
                 {/* USER DATA BLOCKS: Turn this form (article display) into a component then run the map function on it*/}
-                <ul>
+                <Card>
+          
                 {this.state.clothes.map(clothes =>
-                    <li key={clothes._id}>
+                    <div key={clothes._id}>
+
+                    <img src="https://s3.amazonaws.com/fashionzen/test.png" height="75" width="75"></img>
 
                     <img src={clothes.image} height="75" width="75"></img>
 
@@ -211,15 +214,16 @@ class Dashboard extends Component {
                     <input type="text" name={clothes.material} value={clothes.material} 
                     onChange={(e) => this.handleListChange(clothes._id, "material", e)} placeholder="material"/>
 
-                    <input type="submit" value="Delete" onClick={() => this.deleteClothes(clothes._id)} />
-                    <input type="submit" value="Update" onClick={() => this.updateClothes(clothes._id, clothes)} />
+                        <button type="button" className="btn btn-warning" value="Delete" onClick={() => this.deleteClothes(clothes._id)}> Delete </button>
+                        <button type="button" className="btn btn-dark" value="Update" onClick={() => this.updateClothes(clothes._id, clothes)} > Update </button>
                         
-                    </li>
+                    </div>
                 )}
-                </ul>
+                </Card>
                 {/*USER DATA BLOCK ENDS*/}
 
-
+                <Card>
+                  
                 {/*INPUT BLOCK: Form to add clothing item*/}
                 <form onSubmit={this.handleSubmit}>
                     <label>Input Clothes:</label>

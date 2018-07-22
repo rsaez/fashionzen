@@ -215,7 +215,7 @@ class SignUpInForm extends Component {
       return (
         <div>
         <div>
-          <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+          <nav className="navbar navbar-dark bg-primary">
               <a className="navbar-brand" href="/">
                   Fashionzen
               </a>
@@ -241,7 +241,7 @@ class SignUpInForm extends Component {
               onChange={this.onTextboxChangeSignInPassword}
             />
             <br />
-            <button onClick={this.onSignIn}>Sign In</button>
+            <button className="btn btn-warning" onClick={this.onSignIn}>Sign In</button>
           </div>
           <br />
           <br />
@@ -264,7 +264,7 @@ class SignUpInForm extends Component {
               value={signUpPassword}
               onChange={this.onTextboxChangeSignUpPassword}
             /><br />
-            <button onClick={this.onSignUp}>Sign Up</button>
+            <button className="btn btn-warning" onClick={this.onSignUp}>Sign Up</button>
           </div>
           </nav>
 
@@ -279,11 +279,11 @@ class SignUpInForm extends Component {
     return (
       <div>
       <div>
-        <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+        <nav className="navbar navbar-dark bg-primary" >
           <a className="navbar-brand" href="/">
               Fashionzen
           </a>
-          <button className="float-right" onClick={this.logout}>Logout</button>
+          <button className="btn btn-warning" onClick={this.logout}>Logout</button>
         </nav>
       </div>
       <div>
